@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 import SmartechBaseReact from "smartech-base-react-native"
-import { NativeModules } from 'react-native';
-import SmartechAppInboxReact from 'smartech-appinbox-react-native'
+import { HanselUserRn} from 'smartech-reactnative-nudges';
 
 
 export default function LoginScreen({ navigation }) {
@@ -21,8 +20,8 @@ export default function LoginScreen({ navigation }) {
 
   const handleLogin = () => {
     if (email && password) {
-      SmartechBaseReact.login("laxmimedli19999@gmail.com");
-      NativeModules.HanselUserRn.setUserId("laxmimedli1999@gmail.com");
+      SmartechBaseReact.login(email);
+      HanselUserRn.setUserId(email);
 
       navigation.navigate('Home');
     } else {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "814421480619",
+    "project_id": "smartech-react-new",
+    "storage_bucket": "smartech-react-new.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814421480619:android:6fc306cabc1ccf934193ee",
+        "android_client_info": {
+          "package_name": "com.demoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaSNTwt0KjsNQBc_chUI0lgf6uXZHKjSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

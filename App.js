@@ -38,37 +38,37 @@ export default function App() {
     setLocationStatus
   ] = useState('');
 
-  useEffect(() => {
-    const requestLocationPermission = async () => {
-      if (Platform.OS === 'ios') {
-        getOneTimeLocation();
-        subscribeLocationLocation();
-      } else {
-        try {
-          const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-            {
-              title: 'Location Access Required',
-              message: 'This App needs to Access your location',
-            },
-          );
-          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            //To Check, If Permission is granted
-            getOneTimeLocation();
-            subscribeLocationLocation();
-          } else {
-            setLocationStatus('Permission Denied');
-          }
-        } catch (err) {
-          console.warn(err);
-        }
-      }
-    };
-    requestLocationPermission();
-    return () => {
-      Geolocation.clearWatch(watchID);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const requestLocationPermission = async () => {
+  //     if (Platform.OS === 'ios') {
+  //       getOneTimeLocation();
+  //       subscribeLocationLocation();
+  //     } else {
+  //       try {
+  //         const granted = await PermissionsAndroid.request(
+  //           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+  //           {
+  //             title: 'Location Access Required',
+  //             message: 'This App needs to Access your location',
+  //           },
+  //         );
+  //         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+  //           //To Check, If Permission is granted
+  //           getOneTimeLocation();
+  //           subscribeLocationLocation();
+  //         } else {
+  //           setLocationStatus('Permission Denied');
+  //         }
+  //       } catch (err) {
+  //         console.warn(err);
+  //       }
+  //     }
+  //   };
+  //   requestLocationPermission();
+  //   return () => {
+  //     Geolocation.clearWatch(watchID);
+  //   };
+  // }, []);
 
   const getOneTimeLocation = () => {
     setLocationStatus('Getting Location ...');
@@ -102,50 +102,50 @@ export default function App() {
     );
   };
 
-  const subscribeLocationLocation = () => {
-    watchID = Geolocation.watchPosition(
-      (position) => {
-        //Will give you the location on location change
+  // const subscribeLocationLocation = () => {
+  //   watchID = Geolocation.watchPosition(
+  //     (position) => {
+  //       //Will give you the location on location change
         
-        setLocationStatus('You are Here');
-        // console.log("position",position);
-        // console.log("==>", position.coords.latitude, position.coords.longitude);
-        SmartechBaseReact.setUserLocation(position.coords.latitude, position.coords.longitude);
-        // SmartechBaseReact.optTracking(true)
-        // SmartechBaseReact.hasOptedTracking(function() {
+  //       setLocationStatus('You are Here');
+  //       // console.log("position",position);
+  //       // console.log("==>", position.coords.latitude, position.coords.longitude);
+  //       SmartechBaseReact.setUserLocation(position.coords.latitude, position.coords.longitude);
+  //       // SmartechBaseReact.optTracking(true)
+  //       // SmartechBaseReact.hasOptedTracking(function() {
 
-        // })
-        SmartechPushReact.optPushNotification(true)
-        // SmartechPushReact.hasOptedPushNotification(function() {
-        // })
+  //       // })
+  //       SmartechPushReact.optPushNotification(true)
+  //       // SmartechPushReact.hasOptedPushNotification(function() {
+  //       // })
 
       
 
 
 
-        //getting the Longitude from the location json        
-        const currentLongitude =
-          JSON.stringify(position.coords.longitude);
+  //       //getting the Longitude from the location json        
+  //       const currentLongitude =
+  //         JSON.stringify(position.coords.longitude);
 
-        //getting the Latitude from the location json
-        const currentLatitude = 
-          JSON.stringify(position.coords.latitude);
+  //       //getting the Latitude from the location json
+  //       const currentLatitude = 
+  //         JSON.stringify(position.coords.latitude);
 
-        //Setting Longitude state
-        setCurrentLongitude(currentLongitude);
+  //       //Setting Longitude state
+  //       setCurrentLongitude(currentLongitude);
 
-        //Setting Latitude state
-        setCurrentLatitude(currentLatitude);
-      },
-      (error) => {
-        setLocationStatus(error.message);
-      },
-      {
-        enableHighAccuracy: false,
-        maximumAge: 1000
-      },
-    );
-  };
+  //       //Setting Latitude state
+  //       setCurrentLatitude(currentLatitude);
+  //     },
+  //     (error) => {
+  //       setLocationStatus(error.message);
+  //     },
+  //     {
+  //       enableHighAccuracy: false,
+  //       maximumAge: 1000
+  //     },
+  //   );
+  // };
   const handleDeeplinkWithPayload = (smartechData) => {
     console.log('Smartech Data :: ', smartechData.smtDeeplink);
     console.log('Smartech Deeplink :: ', smartechData.smtDeeplink);
@@ -177,7 +177,7 @@ export default function App() {
 return (
     <NavigationContainer nativeID={'hansel_ignore_container'} linking={linking} onReady={() => console.log('Navigation is ready')}
     onStateChange={(state) => console.log('Navigation state:', state)} fallback={<Text>Loading...</Text>}>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="DressDetails" component={DressDetailsScreen} />

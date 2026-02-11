@@ -21,6 +21,27 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+
+
+
+        <intent-filter>
+              <action android:name="android.intent.action.VIEW" />
+
+              <category android:name="android.intent.category.DEFAULT" />
+              <category android:name="android.intent.category.BROWSABLE" />
+
+              <data android:scheme="netcorepx" />
+          </intent-filter>
+
+
+          <intent-filter>
+              <action android:name="android.intent.action.VIEW" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <category android:name="android.intent.category.BROWSABLE" />
+              <data android:scheme="sample"
+                  android:host="smartech_sdk_td" />
+          </intent-filter>
+
         <intent-filter>
     <action android:name="android.intent.action.VIEW" />
     <category android:name="android.intent.category.DEFAULT" />
@@ -32,5 +53,28 @@
     <data android:scheme="https" android:host="myapp.com" />
   </intent-filter>
       </activity>
+
+
+       <meta-data
+            android:name="SMT_APP_ID"
+            android:value="cc8ef5ea95a4e3a080cb2fb77b30795a" />
+
+        <meta-data
+            android:name="HANSEL_APP_ID"
+            android:value="ONX0I456UAVC09PSM8991PKAR" />
+        <meta-data
+            android:name="HANSEL_APP_KEY"
+            android:value="TP2AME83E1WWLSCF7GRBXI4OSH922W94PQJFLN3YP21L0X5QEN" />
+        <meta-data
+            android:name="SMT_IS_AUTO_ASK_NOTIFICATION_PERMISSION"
+            android:value="0" />
+
+        <service
+            android:name=".FCM_Service"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>

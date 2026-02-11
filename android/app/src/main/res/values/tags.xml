@@ -1,0 +1,4 @@
+<resources>
+    <item name="hansel_ignore_view" type="id"/>
+    <item name="hansel_ignore_view_overlay" type="id"/>
+</resources>

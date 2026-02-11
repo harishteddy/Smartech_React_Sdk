@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';  // For navigation
-import { NativeModules } from 'react-native';
-import SmartechBaseReact from "smartech-base-react-native"
-import SmartechAppInboxReact from 'smartech-appinbox-react-native'
-
-
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import SmartechBaseReact from 'smartech-base-react-native';
 
 const categories = [
   { name: 'Shirt', image: require('../assets/boyspic1.jpg') },
@@ -26,50 +29,47 @@ const dresses = [
 ];
 
 const HomeScreen = () => {
-  const navigation = useNavigation();  // To navigate to the dress details page
+  const navigation = useNavigation();
 
+  useEffect(() => {
+    // ✅ Smartech login
+    SmartechBaseReact.login('guest_user');
 
+    // ✅ Smartech event tracking
+    SmartechBaseReact.trackEvent('Home_Screen', {
+      name: 'HomeScreen',
+      description: 'home page with products',
+      payload_id: '1',
+      event_id: 21,
+    });
+  }, []);
 
-
-  useEffect(()=>{
-    SmartechBaseReact.login("Laxmeemedliswift");
-
-
-// Sample code for reference purpose only
-const payloadata = {
-    name: "HomeScreen",
-    description: "home page with products",
-    payload_id: "1",
-    event_id:21
-};
-SmartechBaseReact.trackEvent("Home_Screen", payloadata);
-
-NativeModules.HanselRn.setNativeID()
-  },[])
-
-function openAppInbox(){
-  navigation.navigate('AppInbox');
-
-}
+  const openAppInbox = () => {
+    navigation.navigate('AppInbox');
+  };
 
   return (
-    <ScrollView style={styles.container} >
+    <ScrollView style={styles.container}>
       <TouchableOpacity onPress={openAppInbox}>
-      <Text style={{fontSize:20, fontWeight:"bold", color:"red"}}>  Notifications</Text>
-
+        <Text style={styles.notificationText}>Notifications</Text>
       </TouchableOpacity>
-      {/* Categories ScrollView */}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.categoryBar}>
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.categoryBar}
+      >
         {categories.map((item, index) => (
-          <View key={index} style={styles.categoryItem}  >
+          <View key={index} style={styles.categoryItem}>
             <Image source={item.image} style={styles.categoryImage} />
-            <Text style={styles.categoryText}>{item.name.toUpperCase()}</Text>
+            <Text style={styles.categoryText}>
+              {item.name.toUpperCase()}
+            </Text>
           </View>
         ))}
       </ScrollView>
 
-      {/* Shop for Men and Women Buttons */}
-      <View style={styles.shopButtonsContainer}  >
+      <View style={styles.shopButtonsContainer}>
         <TouchableOpacity style={styles.shopButton}>
           <Text style={styles.shopButtonText}>SHOP FOR WOMEN</Text>
         </TouchableOpacity>
@@ -78,13 +78,14 @@ function openAppInbox(){
         </TouchableOpacity>
       </View>
 
-      {/* Scrollable Grid of Dresses */}
       <View style={styles.gridContainer}>
-        {dresses.map((item) => (
+        {dresses.map(item => (
           <TouchableOpacity
             key={item.id}
             style={styles.gridItem}
-            onPress={() => navigation.navigate('DressDetails', { item })}
+            onPress={() =>
+              navigation.navigate('DressDetails', { item })
+            }
           >
             <Image source={item.image} style={styles.gridImage} />
             <Text style={styles.gridText}>{item.name}</Text>
@@ -99,6 +100,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  notificationText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'red',
+    margin: 10,
   },
   categoryBar: {
     marginVertical: 20,

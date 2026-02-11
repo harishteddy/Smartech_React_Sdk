@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.0.0",
-    "@react-native-community/cli-platform-ios": "^14.1.1",
+    "@react-native-community/cli-platform-ios": "^14.0.1",
     "@react-native-community/geolocation": "^3.4.0",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",
@@ -22,9 +22,9 @@
     "react-native-screens": "^3.34.0",
     "react-native-url-polyfill": "^2.0.0",
     "smartech-appinbox-react-native": "^3.5.1",
-    "smartech-base-react-native": "^3.5.3",
-    "smartech-push-react-native": "^3.5.0",
-    "smartech-reactnative-nudges": "^1.0.22"
+    "smartech-base-react-native": "^3.7.3",
+    "smartech-push-react-native": "^3.7.2",
+    "smartech-reactnative-nudges": "^3.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
